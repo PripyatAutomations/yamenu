@@ -15,19 +15,12 @@ integrations:
     # Home assistance
     ha_url: http://10.237.1.239:8123/api
 
-# Here we include any menus that should be used
-# XXX: Support wildcards someday?
-@include "menus/dir/main.yml"
+# Here we include any menus that should be used, wildcards OK!
 @include "menus/info.yml"
 @include "menus/main.yml"
-@include "menus/hass/attic.yml"
-@include "menus/hass/bathroom.yml"
-@include "menus/hass/bedroom.yml"
-@include "menus/hass/basement.yml"
-@include "menus/hass/dogroom.yml"
-@include "menus/hass/main-menu.yml"
-@include "menus/hass/outside.yml"
-@include "menus/radio/main.yml"
+@include "menus/dir/*.yml"
+@include "menus/radio/*.yml"
+@include "menus/hass/*.yml"
 
 #menu-hass-bathroom-sensors:
 #menu-hass-kitchen:

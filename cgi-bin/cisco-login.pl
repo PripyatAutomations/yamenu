@@ -8,11 +8,10 @@ use poop qw(simple_preproc number_lines load_config url_filter);
 use CiscoPhone qw(render_icon_file_menu render_login_form render_message render_messages render_phone_menu render_redirect);
 use YAML;
 
-my $cfg = load_config('/svc/yamenu/config.yml');
-my $log_dir = $cfg->{log_dir};
-my $log_file = "$log_dir/cisco-auth.log";
-open my $log_fh, '>>', $log_file or die "Cannot open log file: $!";
+my $log_file = "/svc/yamenu/logs/cisco-auth.log";
+open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
 open STDERR, '>&', $log_fh or die "Cannot redirect STDERR to log file: $!";
+my $cfg = load_config($log_fh, '/svc/yamenu/config.yml');
 
 my $cgi = CGI->new;
 my $use_biff = $cfg->{use_biff};
@@ -30,7 +29,7 @@ render_redirect($cgi, "$base_url/cgi-bin/cisco-menu.pl");
 exit;
 
 #print $log_fh "cgi-login: headers: " . $cgi->header_dump() . "\n";
-my $dbh = DBI->connect("dbi:SQLite:dbname=/srv/db/cisco.db", "", "", { RaiseError => 1, AutoCommit => 1 });
+my $dbh = DBI->connect("dbi:SQLite:dbname=../db/yamenu.db", "", "", { RaiseError => 1, AutoCommit => 1 });
 
 # Expire inactive sessions (15 min) and in-progress logins (60 sec)
 my $expire_stmt = $dbh->prepare(

@@ -43,6 +43,7 @@ CREATE UNIQUE INDEX idx_token ON user_sessions(token);
 --- Example:
 INSERT INTO users (id, name, pin) VALUES (0, 'eel', '4004');
 INSERT INTO users (name, pin) VALUES ('joe', '1551');
+
 --- And some groups
 INSERT INTO groups (gid, grp_name) VALUES (0, 'users');
 INSERT INTO groups (gid, grp_name) VALUES (1, 'admins');
@@ -60,6 +61,19 @@ INSERT INTO group_members (gid, uid)
 SELECT g.gid, u.id
 FROM users u
 JOIN groups g ON g.grp_name = 'admins'
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM group_members gm
+    WHERE gm.gid = g.gid
+)
+ORDER BY u.id ASC
+LIMIT 1;
+
+--- and also a radio-admin!
+INSERT INTO group_members (gid, uid)
+SELECT g.gid, u.id
+FROM users u
+JOIN groups g ON g.grp_name = 'radio-admins'
 WHERE NOT EXISTS (
     SELECT 1
     FROM group_members gm

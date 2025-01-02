@@ -12,11 +12,10 @@ use DBI;
 use lib '/svc/yamenu/perl-lib';
 use poop qw(simple_preproc load_config);
 
-my $cfg = load_config('/svc/yamenu/config.yml');
-my $log_dir = $cfg->{log_dir};
-my $log_file = "$log_dir/cisco-auth.log";
-open my $log_fh, '>>', $log_file or die "Cannot open log file: $!";
+my $log_file = "/svc/yamenu/logs/cisco-auth.log";
+open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
 open STDERR, '>&', $log_fh or die "Cannot redirect STDERR to log file: $!";
+my $cfg = load_config($log_fh, '/svc/yamenu/config.yml');
 
 # Initialize CGI object
 my $cgi = CGI->new;
@@ -24,7 +23,7 @@ print $cgi->header('text/xml');
 my $ip_address = $cgi->remote_addr;
 
 # Database connection
-my $dbh = DBI->connect("dbi:SQLite:dbname=../db/cisco.db", "", "", { RaiseError => 1, AutoCommit => 1 });
+my $dbh = DBI->connect("dbi:SQLite:dbname=../db/yamenu.db", "", "", { RaiseError => 1, AutoCommit => 1 });
 
 print $log_fh "cisco-auth: Pre-auth from $ip_address\n";
 print "1";

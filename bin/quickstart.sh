@@ -5,7 +5,7 @@ if [ "secrets.yml" ]; then
    exit 1
 fi
 cp secrets.yml.example secrets.yml
-
+./bin/reset-db.sh
 chown -R www-data:www-data .
 
 echo "Be sure to edit secrets.yml!"

@@ -11,11 +11,10 @@ use lib '/svc/yamenu/perl-lib';
 use poop qw(simple_preproc number_lines load_config url_filter);
 use CiscoPhone qw(render_icon_file_menu render_login_form render_message render_messages render_phone_menu render_redirect);
 
-my $cfg = load_config('/svc/yamenu/config.yml');
-my $log_dir = $cfg->{log_dir};
-my $log_file = "$log_dir/cisco-menu.log";
-open my $log_fh, '>>', $log_file or die "Cannot open log file: $!";
+my $log_file = "/svc/yamenu/logs/cisco-menu.log";
+open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
 open STDERR, '>&', $log_fh or die "Cannot redirect STDERR to log file: $!";
+my $cfg = load_config($log_fh, '/svc/yamenu/config.yml');
 my $base_url = $cfg->{base_url};
 my $cgi_base = $cfg->{cgi_base};
 my $img_base = $cfg->{img_base};
@@ -23,7 +22,6 @@ my $cgi = CGI->new;
 my $ip_address = $cgi->remote_addr;
 my $menu_id = $cgi->param('menu') || 'menu-main';
 print $log_fh "cisco-menu: Request from IP: $ip_address at " . localtime() . " for $menu_id\n";
-
 
 # Does menu exist?
 unless (exists $cfg->{$menu_id}) {
@@ -62,7 +60,7 @@ if (defined($cookie)) {
 
 ###### XXX: disabled for now
 # Database connection
-#my $dbh = DBI->connect("dbi:SQLite:dbname=../db/cisco.db", "", "", { RaiseError => 1, AutoCommit => 1 });
+#my $dbh = DBI->connect("dbi:SQLite:dbname=../db/yamenu.db", "", "", { RaiseError => 1, AutoCommit => 1 });
 # Check if a session exists for the given IP address
 #my $session_check_stmt = $dbh->prepare("SELECT user, last_active FROM user_sessions WHERE ip_address = ?");
 #$session_check_stmt->execute($ip_address);

@@ -33,6 +33,3 @@ radio-main:
     - name: Back
       link: menu-main
       position: 4
-
-# XXX: wildcard includes would be so nice here!
-#@include "menus/radio/radio-status.yml"
