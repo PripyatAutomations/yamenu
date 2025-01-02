@@ -21,5 +21,7 @@ radio-status-overview:
   softkeys:
     - name: Users
       link: radio-status-users
+      position: 1
     - name: Radios
       link: radio-status-radios
+      position: 2
