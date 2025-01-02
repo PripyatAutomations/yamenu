@@ -13,7 +13,12 @@ CREATE TABLE user_sessions (
     dev_name TEXT DEFAULT NULL,
     --- This stores the hashed token for the cookie
     token TEXT DEFAULT NULL,
+    
+    --- User Locale
+    locale TEXT DEFAULT NULL,
+    --- Last login
     login_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    --- Last time the user was seen
     last_active DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE users (

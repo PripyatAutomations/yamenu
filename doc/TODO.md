@@ -1,6 +1,7 @@
 - Implement need_login attribute for menus and menu items
 - fix cisco-login.pl
-- Implement img_on and img_off types (exclusive of img)
+- Implement img_on and img_off types (exclusive of img) and polling of state
+  via hass.pl
 - Make script to validate the yaml using yq for syntax
   - Confirm it has Position attrib on softkeys and throw error instead of
     emitting broken XML

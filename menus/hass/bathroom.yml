@@ -15,6 +15,9 @@ menu-hass-bathroom:
     - name: Old Light
       url: %%cgi%%/hass.pl?entity=switch.bathroom_old_light_switch_0&act=set&state=toggle
       icon: 1
+    - name: AutoLight
+      url: %%cgi%%/hass.pl?entity=input_boolean.bathroom_mirror_light_auto&act=set&state=toggle
+      icon: 3
   icons:
     - index: 0
       url: %%img%%/ceiling-fan.png
@@ -22,6 +25,8 @@ menu-hass-bathroom:
       url: %%img%%/ceiling-light.png
     - index: 2
       url: %%img%%/light.png
+    - index: 3
+      url: %%img%%/toggle-switch-off.png
   softkeys:
     - name: Main Menu
       link: menu-hass
@@ -29,3 +34,5 @@ menu-hass-bathroom:
     - name: Exit
       url: Key:Services
       position: 4
+
+#menu-hass-bathroom-sensors:

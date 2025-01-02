@@ -8,6 +8,9 @@ use Exporter 'import';
 our @EXPORT_OK = ('simple_preproc', 'number_lines', 'load_config',
                   'url_filter');
 
+my $debug = 1;
+# my $debug = 0;
+
 my $log_fh;
 
 # Transform URLs 
@@ -27,13 +30,14 @@ sub simple_preproc {
     my $file_text = read_file($file) or die "Cannot open file $file: $!";
 
     # Debugging line for initial file content
-#    print $log_fh "Starting to process file: $file\n";
-#    print $log_fh "Initial file content: $file_text\n";
+    if ($debug) {
+       print $log_fh "Starting to process file: $file\n";
+       print $log_fh "Initial file content: $file_text\n";
+    }
 
     if ($replacements && ref($replacements) eq 'HASH') {
         for my $placeholder (keys %{$replacements}) {
             my $replacement = $replacements->{$placeholder};
-#            print $log_fh "Performing replacement: $placeholder -> $replacement\n";
             $file_text =~ s/\Q$placeholder\E/$replacement/g;
         }
     }
@@ -43,9 +47,11 @@ sub simple_preproc {
         my $include_pattern = $1;
         print $log_fh "Found \@include pattern: $include_pattern\n";
 
-        # If the include pattern contains a wildcard, expand to absolute path before globbing
+        # Check if this is a wildcard include
         if ($include_pattern =~ /[*?]/) {
-            # If the include file path is relative, make it absolute first
+            print $log_fh "Wildcard include detected: $include_pattern\n";
+
+            # Handle relative paths by converting them to absolute paths
             if ($include_pattern !~ m{^/} && $include_pattern !~ m{^[a-zA-Z]:}) {
                 my $abs_file = File::Spec->rel2abs($file);
                 my ($volume, $directories, $filename) = File::Spec->splitpath($abs_file);
@@ -53,41 +59,50 @@ sub simple_preproc {
                 print $log_fh "Expanding to absolute path: $include_pattern\n";
             }
 
-            # Now use glob to expand wildcard patterns into actual file paths
+            # Now use glob to expand wildcard patterns
             my @included_files = glob($include_pattern);
             print $log_fh "Wildcard include files found: " . join(", ", @included_files) . "\n";
 
+            # Process each file matched by the wildcard
             if (@included_files) {
                 for my $include_file (@included_files) {
                     print $log_fh "Including file: $include_file\n";
                     my $included_content = load_file_and_process($include_file);
-                    # Replace the current @include directive with the included content
-#                    print $log_fh "Replacing \@include with content from $include_file\n";
-                    $file_text =~ s/\@include\s+"[^"]+"/$included_content/s;
+                    print $log_fh "Replacing \@include with content from $include_file\n";
+
+                    # Replace the @include directive with the content from the included file
+                    $file_text =~ s/\@include "$include_pattern"/$included_content/s;
                 }
             } else {
                 print $log_fh "warn: No files matched for wildcard include: $include_pattern\n";
             }
-        } else {
-            # Handle the case without wildcard (previous behavior)
-            my $include_file = $include_pattern;
+        }
+        else {
+            # Handle regular includes (without wildcards)
+            print $log_fh "Regular include detected: $include_pattern\n";
 
-            # If the include file path is relative, make it absolute
-            if ($include_file !~ m{^/} && $include_file !~ m{^[a-zA-Z]:}) {
+            # Handle the include path as usual
+            if ($include_pattern !~ m{^/} && $include_pattern !~ m{^[a-zA-Z]:}) {
                 my $abs_file = File::Spec->rel2abs($file);
                 my ($volume, $directories, $filename) = File::Spec->splitpath($abs_file);
-                $include_file = File::Spec->catpath($volume, $directories, $include_file);
+                $include_pattern = File::Spec->catpath($volume, $directories, $include_pattern);
             }
 
-            print $log_fh "Including direct path: $include_file\n";
+            # Process the regular include
+            my $include_file = $include_pattern;
             my $included_content = load_file_and_process($include_file);
-            # Replace the current @include directive with the included content
-#            print $log_fh "Replacing \@include with content from $include_file\n";
-            $file_text =~ s/\@include\s+"[^"]+"/$included_content/s;
+            print $log_fh "Replacing \@include with content from $include_file\n";
+            $file_text =~ s/\@include "$include_pattern"/$included_content/s;
         }
 
         # Debugging line to show intermediate content after replacement
-#        print $log_fh "File content after include replacement:\n$file_text\n";
+        print $log_fh "File content after include replacement:\n$file_text\n";
+    }
+
+    if ($debug) {
+       print $log_fh "--- XML Dump ---\n";
+       print $log_fh "$file_text\n";
+       print $log_fh "--- XML Dump ---\n";
     }
 
     return $file_text;
@@ -126,8 +141,9 @@ sub load_config {
    my ($log, $yaml_file) = @_;
    $log_fh = $log;
    my $config_yaml = simple_preproc($yaml_file);
-   my $rv = YAML::Load($config_yaml) or invalid_yaml($config_yaml);
-   return $rv;
+   print $log_fh "--- final ---\n$config_yaml\n--- final ---\n";
+#   my $rv = YAML::Load($config_yaml) or invalid_yaml($config_yaml);
+#   return $rv;
 }
 
 1;

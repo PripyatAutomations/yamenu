@@ -19,9 +19,5 @@ integrations:
 @include "menus/info.yml"
 @include "menus/main.yml"
 @include "menus/dir/*.yml"
-@include "menus/radio/*.yml"
 @include "menus/hass/*.yml"
-
-#menu-hass-bathroom-sensors:
-#menu-hass-kitchen:
-#menu-hass-livingroom:
+@include "menus/radio/*.yml"

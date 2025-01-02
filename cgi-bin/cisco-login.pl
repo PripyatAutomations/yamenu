@@ -13,11 +13,11 @@ open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
 open STDERR, '>&', $log_fh or die "Cannot redirect STDERR to log file: $!";
 my $cfg = load_config($log_fh, '/svc/yamenu/config.yml');
 
-my $cgi = CGI->new;
 my $use_biff = $cfg->{use_biff};
 my $base_url = $cfg->{base_url};
 my $cgi_base = $cfg->{cgi_base};
 my $img_base = $cfg->{img_base};
+my $cgi = CGI->new;
 my $req_ip = $cgi->remote_addr;
 my $req_name = $cgi->param('name');
 my $req_pin = $cgi->param('pin');

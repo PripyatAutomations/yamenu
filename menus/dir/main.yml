@@ -18,6 +18,8 @@ dir-people:
   items:
     - name: Joe
       link: dir-people-joe
+    - name: EEL
+      link: dir-people-eel
 
 dir-people-joe:
   type: PhoneMenu
