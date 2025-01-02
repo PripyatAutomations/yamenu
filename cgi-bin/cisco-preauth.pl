@@ -15,7 +15,7 @@ use poop qw(simple_preproc load_config);
 my $log_file = "/svc/yamenu/logs/cisco-auth.log";
 open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
 open STDERR, '>&', $log_fh or die "Cannot redirect STDERR to log file: $!";
-my $cfg = load_config($log_fh, '/svc/yamenu/config.yml');
+my $cfg = load_config('/svc/yamenu/config.yml');
 
 # Initialize CGI object
 my $cgi = CGI->new;

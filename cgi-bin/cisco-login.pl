@@ -4,20 +4,21 @@ use warnings;
 use CGI;
 use DBI;
 use lib '/svc/yamenu/perl-lib';
-use poop qw(simple_preproc number_lines load_config url_filter);
+use poop qw(simple_preproc load_config url_filter);
 use CiscoPhone qw(render_icon_file_menu render_login_form render_message render_messages render_phone_menu render_redirect);
 use YAML;
 
 my $log_file = "/svc/yamenu/logs/cisco-auth.log";
 open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
 open STDERR, '>&', $log_fh or die "Cannot redirect STDERR to log file: $!";
-my $cfg = load_config($log_fh, '/svc/yamenu/config.yml');
+my $cfg = load_config('/svc/yamenu/config.yml');
 
-my $use_biff = $cfg->{use_biff};
-my $base_url = $cfg->{base_url};
-my $cgi_base = $cfg->{cgi_base};
-my $img_base = $cfg->{img_base};
 my $cgi = CGI->new;
+my $use_biff = $cfg->{'use_biff'};
+my $base_url = $cfg->{'base_url'};
+render_redirect($cgi, "$base_url/cgi-bin/cisco-menu.pl");
+my $cgi_base = $cfg->{'cgi_base'};
+my $img_base = $cfg->{'img_base'};
 my $req_ip = $cgi->remote_addr;
 my $req_name = $cgi->param('name');
 my $req_pin = $cgi->param('pin');
@@ -25,7 +26,6 @@ my $req_pin = $cgi->param('pin');
 print $log_fh "cisco-auth: Login request from IP: $req_ip at " . localtime() . "\n";
 
 # Temporarily disabled, as it's uneeded and broken - will fix when implement need_login: attribute on menus/items later
-render_redirect($cgi, "$base_url/cgi-bin/cisco-menu.pl");
 exit;
 
 #print $log_fh "cgi-login: headers: " . $cgi->header_dump() . "\n";

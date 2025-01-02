@@ -8,7 +8,7 @@ log_dir: /svc/yamenu/logs
 use_biff: 0
 
 # this should contain a secrets section with ha_token item!
-@include "secrets.yml"
+#~include "secrets.yml"
 
 integrations:
   hass:

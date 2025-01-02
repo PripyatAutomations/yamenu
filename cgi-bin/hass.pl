@@ -15,7 +15,7 @@ use CiscoPhone qw(render_redirect);
 
 my $log_file = "/svc/yamenu/logs/hass-proxy.log";
 open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
-my $cfg = load_config($log_fh, '/svc/yamenu/config.yml');
+my $cfg = load_config('/svc/yamenu/config.yml');
 my $ha_url = $cfg->{'integrations'}{'hass'}{'ha_url'};
 my $secrets = $cfg->{secrets};
 my $ha_token = $secrets->{ha_token};

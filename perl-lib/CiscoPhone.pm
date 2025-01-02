@@ -4,7 +4,7 @@ use warnings;
 use Exporter 'import';
 use CGI;
 use lib '/srv/www/cgi-bin/lib';
-use poop qw(simple_preproc number_lines url_filter);
+use poop qw(url_filter);
 
 our @EXPORT_OK = ( 'render_icon_file_menu', 'render_login_form',
 'render_message', 'render_messages',

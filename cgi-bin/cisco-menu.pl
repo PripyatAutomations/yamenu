@@ -8,13 +8,13 @@ use DBI;
 use Data::Dumper;
 use File::Slurp;
 use lib '/svc/yamenu/perl-lib';
-use poop qw(simple_preproc number_lines load_config url_filter);
+use poop qw(simple_preproc load_config url_filter);
 use CiscoPhone qw(render_icon_file_menu render_login_form render_message render_messages render_phone_menu render_redirect);
 
 my $log_file = "/svc/yamenu/logs/cisco-menu.log";
 open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
 open STDERR, '>&', $log_fh or die "Cannot redirect STDERR to log file: $!";
-my $cfg = load_config($log_fh, '/svc/yamenu/config.yml');
+my $cfg = load_config('/svc/yamenu/config.yml');
 my $base_url = $cfg->{base_url};
 my $cgi_base = $cfg->{cgi_base};
 my $img_base = $cfg->{img_base};
