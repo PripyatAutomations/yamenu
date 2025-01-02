@@ -1,0 +1,25 @@
+radio-status-overview:
+  type: IconMenu
+  title: RadNet Status
+  title_icon: 0
+  prompt: Select a category
+  items:
+    - name: Active Users
+      link: radio-status-users
+      icon: 1
+    - name: Radio Status
+      link: radio-status-radios
+      icon: 2
+  icons:
+    - index: 0
+      url: %%img%%/radio-handheld.png
+# XXX: change these asap
+    - index: 1
+      url: %%img%%/radio-handheld.png
+    - index: 2
+      url: %%img%%/radio-handheld.png
+  softkeys:
+    - name: Users
+      link: radio-status-users
+    - name: Radios
+      link: radio-status-radios

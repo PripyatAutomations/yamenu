@@ -27,6 +27,7 @@ integrations:
 @include "menus/hass/dogroom.yml"
 @include "menus/hass/main-menu.yml"
 @include "menus/hass/outside.yml"
+@include "menus/radio/main.yml"
 
 #menu-hass-bathroom-sensors:
 #menu-hass-kitchen:

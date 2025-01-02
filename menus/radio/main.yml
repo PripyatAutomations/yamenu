@@ -1,0 +1,38 @@
+radio-main:
+  type: IconMenu
+  title: Radio Main Menu
+  title_icon: 0
+  prompt: Select a station
+  items:
+    - name: HOME
+      link: radio-home
+      icon: 0
+    - name: Camp
+      link: radio-camp
+      icon: 0
+    - name: Global Status
+      link: radio-status-overview
+      icon: 1
+
+  icons:
+    - index: 0
+      url: %%img%%/radio-handheld.png
+    # XXX: changeme
+    - index: 1
+      url: %%img%%/radio-handheld.png
+  softkeys:
+    - name: HOME
+      link: radio-home
+      position: 1
+    - name: Camp
+      link: radio-camp
+      position: 2
+    - name: Status
+      link: radio-status-overview
+      position: 3
+    - name: Back
+      link: menu-main
+      position: 4
+
+# XXX: wildcard includes would be so nice here!
+#@include "menus/radio/radio-status.yml"

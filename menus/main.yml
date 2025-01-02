@@ -16,7 +16,10 @@ menu-main:
     - name: Logout
       url: %%cgi%%/cisco-logout.pl
       icon: 6
-    - name: Biff
+    - name: Ham Radio
+      link: radio-main
+      icon: 7
+    - name: Biff (new mail)
       url: %%cgi%%/cisco-biff.pl
       icon: 5
   icons:
@@ -34,6 +37,8 @@ menu-main:
       url: %%img%%/email.png
     - index: 6
       url: %%img%%/logout.png
+    - index: 7
+      url: %%img%%/radio-handheld.png
   softkeys:
     - name: Hass
       link: menu-hass
