@@ -1,0 +1,35 @@
+This mess wants to live at /svc/yamenu
+-- you can probably move it but editing will be required.
+   - I'll try to work on limiting this to a single file in release
+
+You'll need asterisk 19.7 with chan-sccp, newer versions won't work yet.
+
+-- You can skip most of this by using ./bin/quickstart.sh --
+	Copy secrets.yml.example to secrets.yml
+		# cp secrets.yml.example secrets.yml
+
+
+HTTP
+----
+You'll want to either use the existing httpd config or setup your own.
+- You can start the pre-configured httpd with ./bin/start-demo.sh
+
+You will need to provide support for perl CGIs on whatever port you configure.
+
+You'll also want to serve the tftp/ directory on port 6970 non-SSL to improve boot times.
+
+-----
+Notes
+------
+Random crap that'll help you get things going
+
+-------------------
+BOOTING SCCP PHONES
+-------------------
+You'll want a working tftp for cisco 79[246]5 phones.
+
+This will consist of the following:
+	- Files i've shipped in tftp/
+	- firmware I cannot ship, you'll have to find your own
+	  - See doc/FIRMWARE.txt for last releases and checksums
+	- Symlinks from appropriate template in tftp/ to SEPxxxx.cnf.yml where xxxx is your phone's MAC in upper-case letters.

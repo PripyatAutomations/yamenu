@@ -1,0 +1,31 @@
+menu-hass-bathroom:
+  type: IconMenu
+  title: Bathroom Switches
+  prompt: Choose switch
+  items:
+    - name: Fan
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=fan.bathroom_vent&act=set&state=toggle
+    - name: Fan Light
+      url: %%cgi%%/hass.pl?entity=switch.shelly1minig3_543204633d70_switch_0&act=set&state=toggle
+      icon: 1
+    - name: Mirror Light
+      url: %%cgi%%/hass.pl?entity=switch.bathroom_mirror_light&act=set&state=toggle
+      icon: 2
+    - name: Old Light
+      url: %%cgi%%/hass.pl?entity=switch.bathroom_old_light_switch_0&act=set&state=toggle
+      icon: 1
+  icons:
+    - index: 0
+      url: %%img%%/ceiling-fan.png
+    - index: 1
+      url: %%img%%/ceiling-light.png
+    - index: 2
+      url: %%img%%/light.png
+  softkeys:
+    - name: Main Menu
+      link: menu-hass
+      position: 1
+    - name: Exit
+      url: Key:Services
+      position: 4

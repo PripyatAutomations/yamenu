@@ -1,0 +1,14 @@
+info:
+  type: IconMenu
+  title: PRIPYAT.LAN Status
+  title_icon: 0
+  prompt: Site Status
+  items:
+    - name: Sensors
+      link: info-sensors
+      icon: 1
+  icons:
+    - index: 0
+      url: %%img%%/home-heart.png
+    - index: 1
+      url: %%img%%/toilet.png

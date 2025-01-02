@@ -1,0 +1,33 @@
+# Configure the various base URLs, ports are allowed here
+base_url: http://10.237.200.135
+cgi_base: http://10.237.200.135/cgi-bin
+img_base: http://10.237.200.135/telephony/img
+
+log_dir: /svc/yamenu/logs
+# Show new mail interaction?
+use_biff: 0
+
+# this should contain a secrets section with ha_token item!
+@include "secrets.yml"
+
+integrations:
+  hass:
+    # Home assistance
+    ha_url: http://10.237.1.239:8123/api
+
+# Here we include any menus that should be used
+# XXX: Support wildcards someday?
+@include "menus/dir/main.yml"
+@include "menus/info.yml"
+@include "menus/main.yml"
+@include "menus/hass/attic.yml"
+@include "menus/hass/bathroom.yml"
+@include "menus/hass/bedroom.yml"
+@include "menus/hass/basement.yml"
+@include "menus/hass/dogroom.yml"
+@include "menus/hass/main-menu.yml"
+@include "menus/hass/outside.yml"
+
+#menu-hass-bathroom-sensors:
+#menu-hass-kitchen:
+#menu-hass-livingroom:

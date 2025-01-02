@@ -1,0 +1,10 @@
+<DIALTEMPLATE>
+ <TEMPLATE MATCH="911" Timeout="0"/> <!-- Emergency -->
+ <TEMPLATE MATCH="\*.." Timeout="0"/> <!-- Asterisk *.. codes -->
+ <TEMPLATE MATCH="\*.." Timeout="0"/> <!-- Asterisk direct test numbers -->
+ <TEMPLATE MATCH="1..." Timeout="0"/> <!-- Internal numbers -->
+ <TEMPLATE MATCH="2..." Timeout="0"/>  <!-- Internal numbers -->
+ <TEMPLATE MATCH="*" Timeout="5"/> <!-- Anything else -->
+ <TEMPLATE MATCH="2.." Timeout="0"/> <!-- Internal Extensions -->
+ <TEMPLATE MATCH="3.." Timeout="0"/>
+</DIALTEMPLATE>

@@ -1,0 +1,19 @@
+# private data
+secrets.yml
+secrets.yaml
+
+# sqlite3 databases
+db/*.db
+
+# Provisioned devices
+tftp/SEP*.cnf.xml
+
+logs/*.log
+
+# Firmware
+tftp/*.sbn
+tftp/*.loads
+tftp/new_cisco/*
+
+# Disabled for now: localization (broken)
+tftp/United_States.off/*

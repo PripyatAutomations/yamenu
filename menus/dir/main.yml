@@ -1,0 +1,75 @@
+# IconMenu's aren't supported but do not fail on 79[46]5
+dir-main:
+  type: PhoneMenu
+  title: PRIPYAT.LAN
+  prompt: Select Extension
+  items:
+    - name: People
+      link: dir-people
+    - name: Areas
+      link: dir-areas
+    - name: Utility
+      link: dir-utility
+
+dir-people:
+  type: PhoneMenu
+  title: people@PRIPYAT.LAN
+  prompt: Select Person
+  items:
+    - name: Joe
+      link: dir-people-joe
+
+dir-people-joe:
+  type: PhoneMenu
+  title: joe@PRIPYAT.LAN
+  prompt: Select Device
+  items:
+    - name: ALL
+      url: Dial:209
+    - name: Bedroom
+      url: Dial:200
+    - name: Mobile
+      url: Dial:1000
+  softkeys:
+    - name: ALL
+      url: Dial:109
+      position: 3
+    - name: Bedroom
+      url: Dial:200
+      position: 2
+    - name: Mobile
+      url: Dial:1000
+      position: 1
+
+dir-utility:
+  type: PhoneMenu
+  title: utils@PRIPYAT.LAN
+  prompt: Select Device
+  items:
+    - name: Time & Date
+      url: Dial:8441212
+    - name: ANI
+      url: Dial:9999999999
+    - name: SpyCOM
+      url: Dial:1984
+    - name: SpyBedroom
+      url: Dial:203
+    - name: SpyBathroom
+      url: Dial:303
+
+dir-areas:
+  type: PhoneMenu
+  title: areas@PRIPYAT.LAN
+  prompt: Select Area
+  items:
+    - name: Bedroom
+      url: Dial:200
+    - name: Bathroom
+      url: Dial:300
+  softkeys:
+    - name: Bedroom
+      url: Dial:200
+      position: 1
+    - name: Bathroom
+      url: Dial:300
+      position: 2

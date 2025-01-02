@@ -1,0 +1,29 @@
+menu-hass-dogroom:
+  type: IconMenu
+  title: Dog Room Switches
+  prompt: Choose switch
+  items:
+    - name: Vent Fans
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=fan.dog_room_fans&act=set&state=toggle
+    - name: Light
+      icon: 1
+      url: %%cgi%%/hass.pl?entity=light.dog_room_light&act=set&state=toggle
+  icons:
+    - index: 0
+      url: %%img%%/fan.png
+    - index: 1
+      url: %%img%%/light.png
+  softkeys:
+    - name: Vent Fans
+      url: %%cgi%%/hass.pl?entity=fan.dog_room_fans&act=set&state=toggle
+      position: 1
+    - name: Light
+      position: 2
+      url: %%cgi%%/hass.pl?entity=light.dog_room_light&act=set&state=toggle
+    - name: Main Menu
+      link: menu-hass
+      position: 3
+    - name: Exit
+      link: menu-hass
+      position: 4

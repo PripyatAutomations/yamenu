@@ -1,0 +1,31 @@
+menu-hass-attic:
+  type: IconMenu
+  title: Attic Switches
+  # needs login
+  privileged: 1
+  prompt: Choose switch
+  items:
+    - name: Vent Fans
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=fan.attic_fans&act=set&state=toggle
+    - name: Light
+      icon: 1
+      url: %%cgi%%/hass.pl?entity=light.attic_light&act=set&state=toggle
+  icons:
+    - index: 0
+      url: %%img%%/fan.png
+    - index: 1
+      url: %%img%%/light.png
+  softkeys:
+    - name: Vent Fans
+      url: %%cgi%%/hass.pl?entity=fan.attic_fans&act=set&state=toggle
+      position: 1
+    - name: Light
+      position: 2
+      url: %%cgi%%/hass.pl?entity=light.attic_light&act=set&state=toggle
+    - name: Main Menu
+      link: menu-hass
+      position: 3
+    - name: Exit
+      link: menu-hass
+      position: 4

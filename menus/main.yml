@@ -1,0 +1,49 @@
+menu-main:
+  type: IconMenu
+  title: Main Menu
+  title_icon: 0
+  prompt: Choose an option
+  items:
+    - name: Home Assistant
+      link: menu-hass
+      icon: 1
+    - name: Intercom
+      url: Dial:611
+      icon: 2
+    - name: Status
+      url: %%cgi%%/cisco-info.pl
+      icon: 3
+    - name: Logout
+      url: %%cgi%%/cisco-logout.pl
+      icon: 6
+    - name: Biff
+      url: %%cgi%%/cisco-biff.pl
+      icon: 5
+  icons:
+    - index: 0
+      url: %%img%%/home-heart.png
+    - index: 1
+      url: %%img%%/hass.png
+    - index: 2
+      url: %%img%%/phone-ring.png
+    - index: 3
+      url: %%img%%/head-cog.png
+    - index: 4
+      url: %%img%%/light.png
+    - index: 5
+      url: %%img%%/email.png
+    - index: 6
+      url: %%img%%/logout.png
+  softkeys:
+    - name: Hass
+      link: menu-hass
+      position: 1
+    - name: Intercom
+      url: Dial:611
+      position: 2
+    - name: Status
+      url: %%cgi%%/cisco-info.pl
+      position: 3
+    - name: Exit
+      url: Key:Services
+      position: 4

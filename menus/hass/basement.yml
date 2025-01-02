@@ -1,0 +1,37 @@
+menu-hass-basement:
+  type: IconMenu
+  title: Attic Switches
+  # needs login
+  privileged: 1
+  prompt: Choose switch
+  items:
+    - name: Vent Fans
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=fan.basement_fans&act=set&state=toggle
+    - name: Main Lights
+      icon: 1
+      url: %%cgi%%/hass.pl?entity=light.basement_main_lights&act=set&state=toggle
+    - name: Bright Lights
+      icon: 1
+      url: %%cgi%%/hass.pl?entity=light.basement_bright_lights&act=set&state=toggle
+  icons:
+    - index: 0
+      url: %%img%%/fan.png
+    - index: 1
+      url: %%img%%/light.png
+  softkeys:
+    - name: Vent Fans
+      url: %%cgi%%/hass.pl?entity=fan.basement_fans&act=set&state=toggle
+      position: 1
+    - name: Main Lights
+      position: 2
+      url: %%cgi%%/hass.pl?entity=light.basement_main_lights&act=set&state=toggle
+    - name: Bright Lights
+      position: 3
+      url: %%cgi%%/hass.pl?entity=light.basement_bright_lights&act=set&state=toggle
+    - name: Main Menu
+      link: menu-hass
+      position: 4
+    - name: Exit
+      link: menu-hass
+      position: 5

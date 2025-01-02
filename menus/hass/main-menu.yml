@@ -1,0 +1,59 @@
+menu-hass:
+  type: IconMenu
+  title: Areas
+  prompt: Choose Area
+  items:
+    - name: Bedroom
+      link: menu-hass-bedroom
+      icon: 0
+    - name: Bathroom
+      link: menu-hass-bathroom
+      icon: 5
+    - name: Living Room
+      link: menu-hass-livingroom
+      icon: 1
+    - name: Kitchen
+      link: menu-hass-kitchen
+      icon: 2
+    - name: Basement
+      link: menu-hass-basement
+      icon: 3
+    - name: Attic
+      link: menu-hass-attic
+      icon: 4
+    - name: Outside
+      link: menu-hass-outside
+    - name: Dog Room
+      link: menu-hass-dogroom
+      icon: 6
+  icons:
+    - index: 0
+      url: %%img%%/bed-empty.png
+    - index: 1
+      url: %%img%%/sofa.png
+    - index: 2
+      url: %%img%%/fridge.png
+    - index: 3
+      url: %%img%%/basement.png
+    - index: 4
+      url: %%img%%/attic.png
+    - index: 5
+      url: %%img%%/toilet.png
+    - index: 6
+      url: %%img%%/dog.png
+  softkeys:
+    - name: Outside
+      link: menu-hass-outside
+      position: 1
+    - name: Bathroom
+      link: menu-hass-bathroom
+      position: 2
+    - name: Main Floor
+      link: menu-hass-bedroom
+      position: 3
+    - name: Basement
+      link: menu-hass-basement
+      position: 4
+    - name: Exit
+      url: SoftKey:Exit
+      position: 5

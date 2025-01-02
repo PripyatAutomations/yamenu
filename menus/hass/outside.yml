@@ -1,0 +1,112 @@
+
+menu-hass-outside:
+  type: PhoneMenu
+  title: Outside Switches
+  prompt: Choose Switch
+  items:
+    - name: All Lights (Toggle)
+      url: %%cgi%%/hass.pl?entity=input_boolean.all_outside_lights&act=set&state=toggle
+    - name: Front
+      link: menu-hass-outside-front
+    - name: Back
+      link: menu-hass-outside-back
+    - name: Sides
+      link: menu-hass-outside-sides
+  softkeys:
+    - name: Front
+      link: menu-hass-outside-front
+      position: 1
+    - name: Back
+      link: menu-hass-outside-back
+      position: 2
+    - name: Sides
+      link: menu-hass-outside-sides
+      position: 3
+    - name: Exit
+      link: menu-hass
+      position: 4
+
+menu-hass-outside-back:
+  type: IconMenu
+  title: Out Back Switches
+  prompt: Choose switch
+  items:
+    - name: Bk Left Light
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=light.back_lights_back_left_light&act=set&state=toggle
+    - name: Bk Mid Light
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=light.back_lights_back_mid_light&act=set&state=toggle
+    - name: Bk Right Light
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=light.back_lights_back_right_light&act=set&state=toggle
+    - name: Bk Lower Light
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=light.back_lights_back_lower_door&act=set&state=toggle
+    - name: Bk Speaker
+      icon: 1
+      url: %%cgi%%/hass.pl?entity=light.back_lights_unused4&act=set&state=toggle
+    - name: Bk Toggle All
+      icon: 2
+      url: %%cgi%%/hass.pl?entity=input_boolean.all_outside_back_lights&act=set&state=toggle
+  icons:
+    - index: 0
+      url: %%img%%/light.png
+    - index: 1
+      url: %%img%%/speaker.png
+    - index: 2
+      url: %%img%%/group.png
+  softkeys:
+    - name: Outside
+      link: menu-hass-outside
+      position: 1
+    - name: Toggle ALL
+      position: 2
+      url: %%cgi%%/hass.pl?entity=input_boolean.all_outside_back_lights&act=set&state=toggle
+    - name: Main Menu
+      link: menu-hass
+      position: 3
+    - name: Exit
+      link: menu-hass
+      position: 4
+
+menu-hass-outside-front:
+  type: IconMenu
+  title: Out Front Switches
+  prompt: Choose switch
+  items:
+    - name: Fr Left Light
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=light.front_lights_front_left_light&act=set&state=toggle
+    - name: Fr Mid Light
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=light.front_lights_front_mid_light&act=set&state=toggle
+    - name: Fr Right Light
+      icon: 0
+      url: %%cgi%%/hass.pl?entity=light.front_lights_front_right_light&act=set&state=toggle
+    - name: Fr Toggle All
+      icon: 1
+      url: %%cgi%%/hass.pl?entity=input_boolean.all_outside_front_lights&act=set&state=toggle
+  icons:
+    - index: 0
+      url: %%img%%/light.png
+    - index: 1
+      url: %%img%%/group.png
+  softkeys:
+    - name: Outside
+      link: menu-hass-outside
+      position: 1
+    - name: Toggle ALL
+      position: 2
+      url: %%cgi%%/hass.pl?entity=input_boolean.all_outside_back_lights&act=set&state=toggle
+    - name: Main Menu
+      link: menu-hass
+      position: 3
+    - name: Exit
+      link: menu-hass
+      position: 4
+
+#menu-hass-outside-sides:
+
+#menu-hass-outside-sensors:
+#   privileged: 1

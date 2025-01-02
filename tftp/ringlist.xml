@@ -1,0 +1,98 @@
+<CiscoIPPhoneRingList>
+	<Ring>
+		<DisplayName>Analog Synth 1</DisplayName>
+		<FileName>rings/Analog1.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Analog Synth 2</DisplayName>
+		<FileName>rings/Analog2.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Are You There 1</DisplayName>
+		<FileName>rings/AreYouThere.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Are You There 2</DisplayName>
+		<FileName>rings/AreYouThereF.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Bass</DisplayName>
+		<FileName>rings/Bass.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Chime</DisplayName>
+		<FileName>rings/Chime.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Classic Ring 1</DisplayName>
+		<FileName>rings/Classic1.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Classic Ring 2</DisplayName>
+		<FileName>rings/Classic2.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Clock Shop</DisplayName>
+		<FileName>rings/ClockShop.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Drums 1</DisplayName>
+		<FileName>rings/Drums1.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Drums 2</DisplayName>
+		<FileName>rings/Drums2.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Film Score</DisplayName>
+		<FileName>rings/FilmScore.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Harp Synth</DisplayName>
+		<FileName>rings/HarpSynth.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Jamaica</DisplayName>
+		<FileName>rings/Jamaica.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Koto Effect</DisplayName>
+		<FileName>rings/KotoEffect.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Music Box</DisplayName>
+		<FileName>rings/MusicBox.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Piano 1</DisplayName>
+		<FileName>rings/Piano1.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Piano 2</DisplayName>
+		<FileName>rings/Piano2.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Pop</DisplayName>
+		<FileName>rings/Pop.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Pulse 1</DisplayName>
+		<FileName>rings/Pulse1.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Saxophone 1</DisplayName>
+		<FileName>rings/Sax1.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Saxophone 2</DisplayName>
+		<FileName>rings/Sax2.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>Vibe</DisplayName>
+		<FileName>rings/Vibe.raw</FileName>rings/
+	</Ring>
+	<Ring>
+		<DisplayName>24</DisplayName>
+		<FileName>rings/24.raw</FileName>rings/
+	</Ring>
+</CiscoIPPhoneRingList>
