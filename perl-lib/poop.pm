@@ -58,6 +58,7 @@ sub load_file_and_process {
     return $file_content;
 }
 
+# XXX: fix this. it works sometimes
 sub number_lines {
     my ($input) = @_;
     
