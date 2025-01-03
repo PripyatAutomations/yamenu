@@ -33,21 +33,22 @@ sub simple_preproc {
 
     print $ppl_fh "Starting to process file: $file\n";
 
+    # Apply replacements if provided
     if ($replacements && ref($replacements) eq 'HASH') {
         for my $placeholder (keys %{$replacements}) {
             my $replacement = $replacements->{$placeholder};
-            $file_text =~ s/$placeholder/$replacement/g;
+            $file_text =~ s/\Q$placeholder\E/$replacement/g;
         }
     }
 
-    # Loop to process @include directives
-    while ($file_text =~ /\@include\s+"([^"]+)"/g) {
-        my $include_pattern = $1;
-        print $ppl_fh "Found include pattern: $include_pattern\n";
+    # Process @include directives (wildcards allowed at top level)
+    my @lines = split /\n/, $file_text;
+    my @processed_lines;
 
-        # Check if this is a wildcard include
-        if ($include_pattern =~ /[*?]/) {
-            print $ppl_fh "Wildcard include detected: $include_pattern\n";
+    for my $line (@lines) {
+        if ($line =~ /\@include\s+"([^"]+)"/) {
+            my $include_pattern = $1;
+            print $ppl_fh "Found include pattern: $include_pattern\n";
 
             # Handle relative paths by converting them to absolute paths
             if ($include_pattern !~ m{^/} && $include_pattern !~ m{^[a-zA-Z]:}) {
@@ -57,7 +58,7 @@ sub simple_preproc {
                 print $ppl_fh "Expanding to absolute path: $include_pattern\n";
             }
 
-            # Now use glob to expand wildcard patterns
+            # Use glob to expand wildcard patterns
             my @included_files = glob($include_pattern);
             print $ppl_fh "Wildcard include files found: " . join(", ", @included_files) . "\n";
 
@@ -66,37 +67,17 @@ sub simple_preproc {
                 for my $include_file (@included_files) {
                     print $ppl_fh "Including file: $include_file\n";
                     my $included_content = load_file_and_process($include_file);
-                    print $ppl_fh "Replacing include with content from $include_file\n";
-
-                    # Replace the @include directive with the content from the included file
-                    $file_text =~ s/\@include "$include_pattern"/$included_content/s;
+                    push @processed_lines, $included_content;
                 }
             } else {
                 print $ppl_fh "warn: No files matched for wildcard include: $include_pattern\n";
             }
+        } else {
+            push @processed_lines, $line;
         }
-        else {
-            # Handle regular includes (without wildcards)
-            print $ppl_fh "Regular include detected: $include_pattern\n";
-
-            # Handle the include path as usual
-            if ($include_pattern !~ m{^/} && $include_pattern !~ m{^[a-zA-Z]:}) {
-                my $abs_file = File::Spec->rel2abs($file);
-                my ($volume, $directories, $filename) = File::Spec->splitpath($abs_file);
-                $include_pattern = File::Spec->catpath($volume, $directories, $include_pattern);
-            }
-
-            # Process the regular include
-            my $include_file = $include_pattern;
-            my $included_content = load_file_and_process($include_file);
-            print $ppl_fh "Replacing include with content from $include_file\n";
-            $file_text =~ s/\@include "$include_pattern"/$included_content/s;
-        }
-
-        # Debugging line to show intermediate content after replacement
-#        print $ppl_fh "File content after include replacement:\n$file_text\n";
     }
 
+    $file_text = join "\n", @processed_lines;
 
     print $ppl_fh "[preproc]\n";
     print $ppl_fh $file_text;
@@ -104,7 +85,7 @@ sub simple_preproc {
     return $file_text;
 }
 
- sub load_file_and_process {
+sub load_file_and_process {
     my ($file) = @_;
 
     my $file_content = read_file($file) or die "Cannot open include file $file: $!";
