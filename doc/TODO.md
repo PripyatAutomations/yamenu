@@ -11,3 +11,4 @@
       try to keep active by resending rather than
       rehashing
     - Use a safe hash to make random token for cookie
+- Generate the cisco XML configs for each phone from a CGI so we can rewrite SEP*.cnf.xml to that URL instead
