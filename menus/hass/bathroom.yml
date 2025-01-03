@@ -4,20 +4,31 @@ menu-hass-bathroom:
   prompt: Choose switch
   items:
     - name: Fan
+      type: fan
+      entity: entity=fan.bathroom_vent
       icon: 0
       url: %%cgi%%/hass.pl?entity=fan.bathroom_vent&act=set&state=toggle
     - name: Fan Light
+      type: light
+      entity: switch.shelly1minig3_543204633d70_switch_0
       url: %%cgi%%/hass.pl?entity=switch.shelly1minig3_543204633d70_switch_0&act=set&state=toggle
       icon: 1
     - name: Mirror Light
+      type: light
+      entity: switch.bathroom_mirror_light
       url: %%cgi%%/hass.pl?entity=switch.bathroom_mirror_light&act=set&state=toggle
       icon: 2
     - name: Shower Light
+      type: light
+      entity: switch.bathroom_old_light_switch_0
       url: %%cgi%%/hass.pl?entity=switch.bathroom_old_light_switch_0&act=set&state=toggle
       icon: 1
     - name: AutoLight
+      type: switch
+      entity: input_boolean.bathroom_mirror_light_auto
       url: %%cgi%%/hass.pl?entity=input_boolean.bathroom_mirror_light_auto&act=set&state=toggle
       icon: 3
+      icon_on: 4
   icons:
     - index: 0
       url: %%img%%/ceiling-fan.png
@@ -27,6 +38,8 @@ menu-hass-bathroom:
       url: %%img%%/light.png
     - index: 3
       url: %%img%%/toggle-switch-off.png
+    - index: 4
+      url: %%img%%/toggle-switch.png
   softkeys:
     - name: Main Menu
       link: menu-hass

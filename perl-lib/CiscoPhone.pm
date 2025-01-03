@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use Exporter 'import';
 use CGI;
+use JSON;
 use lib '/srv/www/cgi-bin/lib';
 use poop qw(url_filter);
 
@@ -97,7 +98,27 @@ sub render_icon_file_menu {
             $xml .= "    <URL>$url</URL>\n";
         }
 
-        my $icon = $item->{icon};
+        my $icon_off = $item->{icon};
+        my $icon_on = $item->{icon_on};
+        # Default to the off (default) icon
+        my $icon = $icon_off;
+        # Query the entity
+        my $state = 'off';
+        my $entity = $item->{entity};
+        if (defined($entity) && length($entity)) {
+           # Here we use LWP to query the entity
+           # Then JSON to import it to perl data structures
+        }
+
+        # There's an on icon defined
+        if (defined($icon_on) && length($icon_on)) {
+           # if it's ON, replace the icon index with the icon_on image
+           if ($state == 'on') {
+              $icon = $icon_on;
+           }
+        }
+
+        # did we end up with an icon?
         if (defined($icon) && length($icon)) {
            $xml .= "    <IconIndex>" . ($item->{icon} || 0) . "</IconIndex>\n";
         }
@@ -133,7 +154,6 @@ sub render_icon_file_menu {
     $xml .= "</CiscoIPPhoneIconFileMenu>\n";
     return $xml;
 }
-
 
 sub render_redirect {
     my ($cgi, $url) = @_;
