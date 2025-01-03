@@ -8,7 +8,7 @@ use IO::Handle;  # For buffering STDERR to a log file
 require 'syscall.ph';
 
 # Open the log file for writing (appending)
-open my $log_fh, '>>', '/var/log/fastcgi-perl/error.log' or die "Cannot open logfile: $!";
+open my $log_fh, '>>', '/svc/yamenu/log/fastcgi-perl.error.log' or die "Cannot open logfile: $!";
 # Redirect STDERR to the log file
 open STDERR, '>&', $log_fh or die "Can't redirect STDERR to log file: $!";
 
