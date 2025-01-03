@@ -88,9 +88,9 @@ if (defined($cookie)) {
 # Select the appropriate menu from template and render it
 my $menu = $cfg->{$menu_id};
 if ($menu->{type} eq 'PhoneMenu') {
-    print render_phone_menu($cfg, $menu);
+    print render_phone_menu($cgi, $cfg, $menu);
 } elsif ($menu->{type} eq 'IconMenu') {
-    print render_icon_file_menu($cfg, $menu);
+    print render_icon_file_menu($cgi, $cfg, $menu);
 } else {
     print "<CiscoIPPhoneError><Number>4</Number><Message>Unsupported menu type</Message></CiscoIPPhoneError>";
 }

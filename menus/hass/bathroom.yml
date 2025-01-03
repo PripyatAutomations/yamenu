@@ -5,41 +5,47 @@ menu-hass-bathroom:
   items:
     - name: Fan
       type: fan
-      entity: entity=fan.bathroom_vent
+      entity: fan.bathroom_vent
       icon: 0
+      icon_on: 1
       url: %%cgi%%/hass.pl?entity=fan.bathroom_vent&act=set&state=toggle
     - name: Fan Light
       type: light
       entity: switch.shelly1minig3_543204633d70_switch_0
       url: %%cgi%%/hass.pl?entity=switch.shelly1minig3_543204633d70_switch_0&act=set&state=toggle
-      icon: 1
+      icon: 2
+      icon_on: 3
     - name: Mirror Light
       type: light
       entity: switch.bathroom_mirror_light
       url: %%cgi%%/hass.pl?entity=switch.bathroom_mirror_light&act=set&state=toggle
       icon: 2
+      icon_on: 3
     - name: Shower Light
       type: light
       entity: switch.bathroom_old_light_switch_0
       url: %%cgi%%/hass.pl?entity=switch.bathroom_old_light_switch_0&act=set&state=toggle
-      icon: 1
+      icon: 2
+      icon_on: 3
     - name: AutoLight
       type: switch
       entity: input_boolean.bathroom_mirror_light_auto
       url: %%cgi%%/hass.pl?entity=input_boolean.bathroom_mirror_light_auto&act=set&state=toggle
-      icon: 3
-      icon_on: 4
+      icon: 4
+      icon_on: 5
   icons:
     - index: 0
-      url: %%img%%/ceiling-fan.png
+      url: %%img%%/fan-off.png
     - index: 1
-      url: %%img%%/ceiling-light.png
+      url: %%img%%/fan-on.png
     - index: 2
-      url: %%img%%/light.png
+      url: %%img%%/light-off.png
     - index: 3
-      url: %%img%%/toggle-switch-off.png
+      url: %%img%%/light-on.png
     - index: 4
       url: %%img%%/toggle-switch.png
+    - index: 5
+      url: %%img%%/toggle-switch-off.png
   softkeys:
     - name: Main Menu
       link: menu-hass

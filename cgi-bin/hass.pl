@@ -23,7 +23,6 @@ my $base_url = $cfg->{base_url};
 
 # Initialize CGI
 my $cgi = CGI->new;
-print $cgi->header('text/xml');
 my $message;
 
 # Get parameters
@@ -31,6 +30,7 @@ my $act = $cgi->param('act');
 my $area = $cgi->param('area');
 my $entity = $cgi->param('entity');
 my $state = $cgi->param('state');
+my $referrer = $cgi->param('referrer');
 
 # Validate required parameters
 if (!$act || (!$entity && !$area)) {
@@ -40,10 +40,11 @@ if (!$act || (!$entity && !$area)) {
 
 # HTTP Client
 my $ua = LWP::UserAgent->new;
-$ua->timeout(30);
+$ua->timeout(10);
 
 # Perform the action based on 'act' parameter
 if ($act eq 'get') {
+    print $cgi->header('text/json');
     if ($entity eq 'areas') {
         # Enumerate areas and entities for Cisco IP Phone XML menu
         my $message = get_areas_and_entities($ua);
@@ -58,14 +59,23 @@ if ($act eq 'get') {
         print $message;  # Fetch state of a single entity
     }
 } elsif ($act eq 'set') {
+    print $cgi->header('text/xml');
     if ($state eq 'toggle') {
         print $log_fh "hass-proxy: Toggling entity $entity\n";
         $message = toggle_entity_state($ua, $entity);
-        render_redirect($cgi, 'Key:NavBack');
+        if (defined($referrer) && length($referrer)) {
+           render_redirect($cgi, $referrer);
+        } else {
+           render_redirect($cgi, 'Key:NavBack');
+        }
     } elsif ($state) {
         print $log_fh "hass-proxy: Setting entity $entity to state $state\n";
         $message = set_entity_state($ua, $entity, $state);
-        render_redirect($cgi, 'Key:NavBack');
+        if (defined($referrer) && length($referrer)) {
+           render_redirect($cgi, $referrer);
+        } else {
+           render_redirect($cgi, 'Key:NavBack');
+        }
     } else {
         print $log_fh "hass-proxy: Invalid state '$state' for set on $entity\n";
         $message = to_json({ success => 0, message => "Invalid 'state' for 'set' action" });
@@ -124,7 +134,7 @@ sub get_area_name {
 sub render_areas_menu {
     my ($areas_data) = @_;
     my $xml = "<CiscoIPPhoneMenu>";
-    
+
     foreach my $area_id (keys %$areas_data) {
         my $area_name = $areas_data->{$area_id}{name};
         my $area_url = "$base_url?act=get&area=$area_id";

@@ -65,7 +65,7 @@ if ($session_stmt->rows == 0) {
       # Re-execute the query to get our sid (XXX: can we get it from the query???)
       $session_stmt->execute($req_ip);
       print $log_fh "cisco-auth: Empty PIN! Sending login form to $req_ip\n";
-      render_login_form($cfg, $cgi, "Login Required");
+      render_login_form($cgi, $cfg, "Login Required");
    }
 } elsif ($session_stmt->rows >= 1) {
    my ($session_user, $session_id, $session_dev_name) = $session_stmt->fetchrow_array;

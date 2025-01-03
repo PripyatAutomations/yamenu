@@ -28,5 +28,5 @@ my $ip_address = $cgi->remote_addr;
 # Get the menu ID from the URL parameter
 print $log_fh "mail: Request from IP: $ip_address at " . localtime() . "\n";
 
-render_messages($cfg, $cgi);
+render_messages($cgi, $cfg);
 close $log_fh;
