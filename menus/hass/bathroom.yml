@@ -12,7 +12,7 @@ menu-hass-bathroom:
     - name: Mirror Light
       url: %%cgi%%/hass.pl?entity=switch.bathroom_mirror_light&act=set&state=toggle
       icon: 2
-    - name: Old Light
+    - name: Shower Light
       url: %%cgi%%/hass.pl?entity=switch.bathroom_old_light_switch_0&act=set&state=toggle
       icon: 1
     - name: AutoLight
