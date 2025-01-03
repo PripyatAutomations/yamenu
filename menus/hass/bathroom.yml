@@ -8,29 +8,24 @@ menu-hass-bathroom:
       entity: fan.bathroom_vent
       icon: 0
       icon_on: 1
-      url: %%cgi%%/hass.pl?entity=fan.bathroom_vent&act=set&state=toggle
     - name: Fan Light
       type: light
       entity: switch.shelly1minig3_543204633d70_switch_0
-      url: %%cgi%%/hass.pl?entity=switch.shelly1minig3_543204633d70_switch_0&act=set&state=toggle
       icon: 2
       icon_on: 3
     - name: Mirror Light
       type: light
       entity: switch.bathroom_mirror_light
-      url: %%cgi%%/hass.pl?entity=switch.bathroom_mirror_light&act=set&state=toggle
       icon: 2
       icon_on: 3
     - name: Shower Light
       type: light
       entity: switch.bathroom_old_light_switch_0
-      url: %%cgi%%/hass.pl?entity=switch.bathroom_old_light_switch_0&act=set&state=toggle
       icon: 2
       icon_on: 3
     - name: AutoLight
       type: switch
       entity: input_boolean.bathroom_mirror_light_auto
-      url: %%cgi%%/hass.pl?entity=input_boolean.bathroom_mirror_light_auto&act=set&state=toggle
       icon: 4
       icon_on: 5
   icons:

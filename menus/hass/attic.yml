@@ -7,10 +7,12 @@ menu-hass-attic:
   items:
     - name: Vent Fans
       icon: 0
-      url: %%cgi%%/hass.pl?entity=fan.attic_fans&act=set&state=toggle
+      entity: fan.attic_fans
+      type: fan
     - name: Light
       icon: 1
-      url: %%cgi%%/hass.pl?entity=light.attic_light&act=set&state=toggle
+      type: light
+      entity: light.attic_light
   icons:
     - index: 0
       url: %%img%%/fan.png
@@ -18,11 +20,13 @@ menu-hass-attic:
       url: %%img%%/light.png
   softkeys:
     - name: Vent Fans
-      url: %%cgi%%/hass.pl?entity=fan.attic_fans&act=set&state=toggle
+      entity: fan.attic_fans
+      type: fan
       position: 1
     - name: Light
       position: 2
-      url: %%cgi%%/hass.pl?entity=light.attic_light&act=set&state=toggle
+      type: light
+      entity: light.attic_light
     - name: Main Menu
       link: menu-hass
       position: 3

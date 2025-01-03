@@ -7,13 +7,16 @@ menu-hass-basement:
   items:
     - name: Vent Fans
       icon: 0
-      url: %%cgi%%/hass.pl?entity=fan.basement_fans&act=set&state=toggle
+      type: fan
+      entity: fan.basement_fans
     - name: Main Lights
       icon: 1
-      url: %%cgi%%/hass.pl?entity=light.basement_main_lights&act=set&state=toggle
+      type: light
+      entity: light.basement_main_lights
     - name: Bright Lights
       icon: 1
-      url: %%cgi%%/hass.pl?entity=light.basement_bright_lights&act=set&state=toggle
+      type: light
+      entity: light.basement_bright_lights
   icons:
     - index: 0
       url: %%img%%/fan.png
@@ -21,14 +24,17 @@ menu-hass-basement:
       url: %%img%%/light.png
   softkeys:
     - name: Vent Fans
-      url: %%cgi%%/hass.pl?entity=fan.basement_fans&act=set&state=toggle
+      type: fan
+      entity: fan.basement_fans
       position: 1
     - name: Main Lights
       position: 2
-      url: %%cgi%%/hass.pl?entity=light.basement_main_lights&act=set&state=toggle
+      type: light
+      entity: light.basement_main_lights
     - name: Bright Lights
       position: 3
-      url: %%cgi%%/hass.pl?entity=light.basement_bright_lights&act=set&state=toggle
+      type: light
+      entity: light.basement_bright_lights
     - name: Main Menu
       link: menu-hass
       position: 4

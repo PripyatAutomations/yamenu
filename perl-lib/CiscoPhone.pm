@@ -35,7 +35,13 @@ sub render_phone_menu {
     $xml .= "  <Title>$menu->{title}</Title>\n";
     $xml .= "  <Prompt>$menu->{prompt}</Prompt>\n";
 
+    my $menu_name = $cgi->param('menu');
+    my $cgi_base = $cfg->{'cgi_base'};
+    my $url = "$cgi_base/cisco-menu.pl?menu=$menu_name";
+    print $cgi->header(-type => 'text/xml', -expires => '-1', -refresh => "60; URL=$url");
+
     my $cgi_base = $cfg->{cgi_base};
+
     # Add menu items
     for my $item (@{$menu->{items}}) {
         $xml .= "  <MenuItem>\n";
@@ -226,21 +232,24 @@ sub render_icon_file_menu {
 
     # Add softkeys
     if ($menu->{softkeys}) {
-        for my $softkey (@{$menu->{softkeys}}) {
-            $xml .= "  <SoftKeyItem>\n";
-            $xml .= "    <Name>$softkey->{name}</Name>\n";
-            if ($softkey->{link}) {
-                # Link to another menu
-                $xml .= "    <URL>$cgi_base/cisco-menu.pl?menu=$softkey->{link}</URL>\n";
-            } else {
-                my $url = url_filter($cfg, $softkey->{url});
-                $xml .= "    <URL>$url</URL>\n";
-            }
-            $xml .= "    <Position>$softkey->{position}</Position>\n";
-            $xml .= "  </SoftKeyItem>\n";
-        }
+       for my $softkey (@{$menu->{softkeys}}) {
+          my $entity = $softkey->{entity};
+          $xml .= "  <SoftKeyItem>\n";
+          $xml .= "    <Name>$softkey->{name}</Name>\n";
+          if (defined($entity) && length($entity)) {
+             $xml .= "    <URL>$cgi_base/hass.pl?act=set&state=toggle&entity=$entity</URL>\n";
+          } elsif ($softkey->{link}) {
+             # Link to another menu
+             $xml .= "    <URL>$cgi_base/cisco-menu.pl?menu=$softkey->{link}</URL>\n";
+          } else {
+             my $url = url_filter($cfg, $softkey->{url});
+             $xml .= "    <URL>$url</URL>\n";
+          }
+          $xml .= "    <Position>$softkey->{position}</Position>\n";
+          $xml .= "  </SoftKeyItem>\n";
+      }
     }
-
+ 
     $xml .= "</CiscoIPPhoneIconFileMenu>\n";
     close $log_fh;
     return $xml;

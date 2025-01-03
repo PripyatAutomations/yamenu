@@ -5,13 +5,16 @@ menu-hass-bedroom:
   items:
     - name: Vent Fan
       icon: 0
-      url: %%cgi%%/hass.pl?entity=fan.bedroom_fans&act=set&state=toggle
+      type: fan
+      entity: fan.bedroom_fans
     - name: Main Lights
       icon: 1
-      url: %%cgi%%/hass.pl?entity=light.bedroom_main_lights&act=set&state=toggle
+      type: light
+      entity: light.bedroom_main_lights
     - name: Bright Lights
       icon: 1
-      url: %%cgi%%/hass.pl?entity=light.bedroom_bright_lights&act=set&state=toggle
+      type: light
+      entity: light.bedroom_bright_lights
   icons:
     - index: 0
       url: %%img%%/fan.png
@@ -19,18 +22,20 @@ menu-hass-bedroom:
       url: %%img%%/light.png
   softkeys:
     - name: Vent Fans
-      url: %%cgi%%/hass.pl?entity=fan.bedroom_fans&act=set&state=toggle
+      type: fan
+      entity: fan.bedroom_fans
       position: 1
     - name: Main Lights
       position: 2
-      url: %%cgi%%/hass.pl?entity=light.bedroom_main_lights&act=set&state=toggle
+      type: light
+      entity: light.bedroom_main_lights
     - name: Bright Lights
       position: 3
-      url: %%cgi%%/hass.pl?entity=light.bedroom_bright_lights&act=set&state=toggle
+      type: light
+      entity: light.bedroom_bright_lights
     - name: Main Menu
       link: menu-hass
       position: 4
     - name: Exit
       link: menu-hass
       position: 5
-

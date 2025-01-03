@@ -20,7 +20,7 @@ my $ha_url = $cfg->{'integrations'}{'hass'}{'ha_url'};
 my $secrets = $cfg->{secrets};
 my $ha_token = $secrets->{ha_token};
 my $base_url = $cfg->{base_url};
-
+my $cgi_base = $cfg->{cgi_base};
 # Initialize CGI
 my $cgi = CGI->new;
 my $message;
@@ -59,25 +59,27 @@ if ($act eq 'get') {
         print $message;  # Fetch state of a single entity
     }
 } elsif ($act eq 'set') {
-    print $cgi->header('text/xml');
+    my $ref_url = "$cgi_base/cisco-menu.pl?menu=$referrer";
     if ($state eq 'toggle') {
         print $log_fh "hass-proxy: Toggling entity $entity\n";
         $message = toggle_entity_state($ua, $entity);
         if (defined($referrer) && length($referrer)) {
-           render_redirect($cgi, $referrer);
+           render_redirect($cgi, $ref_url);
         } else {
+           print $log_fh "[set] fallback to Key:NavBack for toggle $entity\n";
            render_redirect($cgi, 'Key:NavBack');
         }
     } elsif ($state) {
         print $log_fh "hass-proxy: Setting entity $entity to state $state\n";
         $message = set_entity_state($ua, $entity, $state);
         if (defined($referrer) && length($referrer)) {
-           render_redirect($cgi, $referrer);
+           render_redirect($cgi, $ref_url);
         } else {
+           print $log_fh "[set] fallback to Key:NavBack for set entity $entity to state $state\n";
            render_redirect($cgi, 'Key:NavBack');
         }
     } else {
-        print $log_fh "hass-proxy: Invalid state '$state' for set on $entity\n";
+        print $log_fh "hass-proxy: Invalid state '$state' for set $entity\n";
         $message = to_json({ success => 0, message => "Invalid 'state' for 'set' action" });
     }
 } else {

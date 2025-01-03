@@ -5,10 +5,12 @@ menu-hass-dogroom:
   items:
     - name: Vent Fans
       icon: 0
-      url: %%cgi%%/hass.pl?entity=fan.dog_room_fans&act=set&state=toggle
+      type: fan
+      entity: fan.dog_room_fans
     - name: Light
       icon: 1
-      url: %%cgi%%/hass.pl?entity=light.dog_room_light&act=set&state=toggle
+      type: light
+      entity: light.dog_room_light
   icons:
     - index: 0
       url: %%img%%/fan.png
@@ -16,11 +18,13 @@ menu-hass-dogroom:
       url: %%img%%/light.png
   softkeys:
     - name: Vent Fans
-      url: %%cgi%%/hass.pl?entity=fan.dog_room_fans&act=set&state=toggle
+      type: fan
+      entity: fan.dog_room_fans
       position: 1
     - name: Light
       position: 2
-      url: %%cgi%%/hass.pl?entity=light.dog_room_light&act=set&state=toggle
+      type: light
+      entity: light.dog_room_light
     - name: Main Menu
       link: menu-hass
       position: 3
