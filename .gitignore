@@ -9,6 +9,7 @@ db/*.db
 tftp/SEP*.cnf.xml
 
 logs/*.log
+logs/*.pid
 
 # Firmware
 tftp/*.sbn

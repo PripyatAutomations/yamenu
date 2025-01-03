@@ -1,4 +1,5 @@
 #!/bin/sh
+sudo $PWD/bin/start-fastcgi-perl-wrapper.pl start
 echo "* Starting builtin webserver (nginx)"
 nginx -c $PWD/etc/nginx/nginx.conf
 

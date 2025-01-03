@@ -1,19 +1,20 @@
 # Configure the various base URLs and such here -- see integrations below and secrets.yml for passwords
-base_url: http://10.237.200.135
-cgi_base: http://10.237.200.135/cgi-bin
-img_base: http://10.237.200.135/telephony/img
+httpd_port: 16673
+base_url: http://10.237.200.135:16673
+cgi_base: http://10.237.200.135:16673/cgi-bin
+img_base: http://10.237.200.135:16673/telephony/img
 
 log_dir: /svc/yamenu/logs
 
 # Show new mail interaction at login?
 use_biff: 0
 
-# this should contain a secrets section with ha_token item!
+# this should contain a secrets section with ha_token item if you use hass entities!
 @include "secrets.yml"
 
+# integrations, for now just home asisstant
 integrations:
   hass:
-    # Home assistance
     ha_url: http://10.237.1.239:8123/api
 
 # Here we include any menus that should be used, wildcards OK *only* in the top level file!!!

@@ -28,16 +28,16 @@
  <loadInformation228    model="Cisco IP Phone 7915 24-Button Line Expansion Module">S00105000400</loadInformation228>
  <loadInformation229    model="Cisco IP Phone 7916 12-Button Line Expansion Module">S00105000400</loadInformation229>
  <loadInformation230    model="Cisco IP Phone 7916 24-Button Line Expansion Module">S00105000400</loadInformation230>
- <authenticationURL>http://10.237.200.135/cgi-bin/cisco-preauth.pl</authenticationURL>
+ <authenticationURL>http://10.237.200.135:16673/cgi-bin/cisco-preauth.pl</authenticationURL>
 -->
  <commonProfile>
   <callLogBlfEnabled>3</callLogBlfEnabled>
  </commonProfile>
- <idleURL>http://10.237.200.135/cgi-bin/cisco-logout.pl</idleURL>
- <informationURL>http://10.237.200.135/cgi-bin/cisco-info.pl</informationURL>
- <messagesURL>http://10.237.200.135/cgi-bin/cisco-messages.pl</messagesURL>
+ <idleURL>http://10.237.200.135:16673/cgi-bin/cisco-logout.pl</idleURL>
+ <informationURL>http://10.237.200.135:16673/cgi-bin/cisco-info.pl</informationURL>
+ <messagesURL>http://10.237.200.135:16673/cgi-bin/cisco-messages.pl</messagesURL>
  <proxyServerURL></proxyServerURL>
- <servicesURL>http://10.237.200.135/cgi-bin/cisco-login.pl</servicesURL>
- <directoryURL>http://10.237.200.135/cgi-bin/cisco-menu.pl?menu=dir-main</directoryURL>
+ <servicesURL>http://10.237.200.135:16673/cgi-bin/cisco-login.pl</servicesURL>
+ <directoryURL>http://10.237.200.135:16673/cgi-bin/cisco-menu.pl?menu=dir-main</directoryURL>
  <idleTimeout>900</idleTimeout>
 </Default>

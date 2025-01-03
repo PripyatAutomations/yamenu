@@ -63,12 +63,12 @@
  </capfList>
  <certHash/>
  <encrConfig>false</encrConfig>
- <idleURL>http://10.237.200.135/cgi-bin/cisco-logout.pl</idleURL>
- <informationURL>http://10.237.200.135/cgi-bin/cisco-menu.pl?menu=info</informationURL>
- <messagesURL>http://10.237.200.135/cgi-bin/cisco-messages.pl</messagesURL>
+ <idleURL>http://10.237.200.135:16673/cgi-bin/cisco-logout.pl</idleURL>
+ <informationURL>http://10.237.200.135:16673/cgi-bin/cisco-menu.pl?menu=info</informationURL>
+ <messagesURL>http://10.237.200.135:16673/cgi-bin/cisco-messages.pl</messagesURL>
  <proxyServerURL></proxyServerURL>
- <servicesURL>http://10.237.200.135/cgi-bin/cisco-login.pl</servicesURL>
- <directoryURL>http://10.237.200.135/cgi-bin/cisco-menu.pl?menu=dir-main</directoryURL>
+ <servicesURL>http://10.237.200.135:16673/cgi-bin/cisco-login.pl</servicesURL>
+ <directoryURL>http://10.237.200.135:16673/cgi-bin/cisco-menu.pl?menu=dir-main</directoryURL>
  <idleTimeout>900</idleTimeout>
  <commonProfile>
   <callLogBlfEnabled>3</callLogBlfEnabled>

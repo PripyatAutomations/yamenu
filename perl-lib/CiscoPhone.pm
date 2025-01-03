@@ -40,8 +40,6 @@ sub render_phone_menu {
     my $url = "$cgi_base/cisco-menu.pl?menu=$menu_name";
     print $cgi->header(-type => 'text/xml', -expires => '-1', -refresh => "60; URL=$url");
 
-    my $cgi_base = $cfg->{cgi_base};
-
     # Add menu items
     for my $item (@{$menu->{items}}) {
         $xml .= "  <MenuItem>\n";
