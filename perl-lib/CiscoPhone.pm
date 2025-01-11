@@ -15,7 +15,9 @@ sub render_message {
     my ($cgi, $title, $prompt, $text, $url, $timeout) = @_;
 
     if (defined($url) && defined($timeout)) {
-       print $cgi->header(-type => 'text/xml', -expires => '-1', -refresh => "$timeout; URL=$url");
+       print $cgi->header(-type => 'text/xml', 
+                          -expires => '-1',
+                          -refresh => "$timeout; URL=$url");
     } else {
        print $cgi->header('text/xml');
     }
@@ -137,6 +139,7 @@ sub render_icon_file_menu {
     my $xml = "<CiscoIPPhoneIconFileMenu>\n";
     my $title_ico = $menu->{title_icon};
     my $cgi_base = $cfg->{cgi_base};
+    my $hass_state_query = $cfg->{hass_state_query};
 
     my $log_file = "/svc/yamenu/logs/cpm.log";
     open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
@@ -170,17 +173,19 @@ sub render_icon_file_menu {
         # If entity property set, prefer it.
         if (defined($entity) && length($entity)) {
            my $args = { act => 'get', entity => $entity };
+           # has the user opted out of state checking?
+           my $new_state = 'toggle';
 
-           # Launch the query
-           my $data = get_and_parse_json($args);
-           if (defined($data->{state}) && length($data->{state})) {
-              $state = $data->{state};
+           if ($hass_state_query) {
+              # Launch the query
+              my $data = get_and_parse_json($args);
+              if (defined($data->{state}) && length($data->{state})) {
+                 $state = $data->{state};
+              }
+              $new_state = invert_state($state);
+
+              print $log_fh "[json] state: $state (toggle state: $new_state)\n";
            }
-
-           # And render the XML...
-           my $new_state = invert_state($state);
-
-           print $log_fh "[json] state: $state (toggle state: $new_state)\n";
 
            # prefer an actual state to using toggle
            if (defined($icon_on) && length($icon_on)) {
@@ -194,8 +199,8 @@ sub render_icon_file_menu {
                # Link to another menu
                $xml .= "    <URL>$cgi_base/cisco-menu.pl?menu=$item->{link}</URL>\n";
            } else {
-               my $url = url_filter($cfg, $item->{url});
-               $xml .= "    <URL>$url</URL>\n";
+               my $item_url = url_filter($cfg, $item->{url});
+               $xml .= "    <URL>$item_url</URL>\n";
            }
         }
 

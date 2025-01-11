@@ -31,6 +31,13 @@ unless (exists $cfg->{$menu_id}) {
 }
 
 ######### Authentication ##########
+###### XXX: disabled for now
+# Database connection
+#my $dbh = DBI->connect("dbi:SQLite:dbname=../db/yamenu.db", "", "", { RaiseError => 1, AutoCommit => 1 });
+# Check if a session exists for the given IP address
+#my $session_check_stmt = $dbh->prepare("SELECT user, last_active FROM user_sessions WHERE ip_address = ?");
+#$session_check_stmt->execute($ip_address);
+#my ($session_name, $session_last_active) = $session_check_stmt->fetchrow_array;
 my $cookie;
 my $cookie_value = $cgi->cookie('AUTH');
 
@@ -57,14 +64,6 @@ if (defined($cookie)) {
        -type    => 'text/xml',
    );
 }
-
-###### XXX: disabled for now
-# Database connection
-#my $dbh = DBI->connect("dbi:SQLite:dbname=../db/yamenu.db", "", "", { RaiseError => 1, AutoCommit => 1 });
-# Check if a session exists for the given IP address
-#my $session_check_stmt = $dbh->prepare("SELECT user, last_active FROM user_sessions WHERE ip_address = ?");
-#$session_check_stmt->execute($ip_address);
-#my ($session_name, $session_last_active) = $session_check_stmt->fetchrow_array;
 
 #if (defined($session_name)) {
 #    # Session exists, update the last_active field

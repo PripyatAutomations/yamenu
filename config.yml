@@ -5,6 +5,9 @@ cgi_base: http://10.237.200.135:16673/cgi-bin
 img_base: http://10.237.200.135:16673/telephony/img
 log_dir: /svc/yamenu/logs
 
+# if false, toggle icons will always show OFF state, but things are much faster!
+hass_state_query: 0
+
 # Show new mail interaction at login?
 use_biff: 0
 

@@ -10,7 +10,7 @@ our @EXPORT_OK = ('simple_preproc','load_config',
 
 
 #my $debug = 1;
- my $debug = 0;
+my $debug = 0;
 my $log_file = "/svc/yamenu/logs/preproc.log";
 open our $ppl_fh, '>>', $log_file or die "Cannot open log file: $!";
 open STDERR, '>&', $ppl_fh or die "Cannot redirect STDERR to log file: $!";
