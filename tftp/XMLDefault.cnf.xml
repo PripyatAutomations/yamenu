@@ -20,8 +20,12 @@
   </members>
  </callManagerGroup>
 <!--    SCCP45.9-3-1SR4-1S to   SCCP45.9-2-1S -->
+<!-- OLD:
  <loadInformation435    model="Cisco 7945">SCCP45.9-2-1S</loadInformation435>
  <loadInformation436    model="Cisco 7965">SCCP45.9-2-1S</loadInformation436>
+-->
+ <loadInformation435    model="Cisco 7945">SCCP45.9-4-2SR3-1S</loadInformation435>
+ <loadInformation436    model="Cisco 7965">SCCP45.9-4-2SR3-1S</loadInformation436>
 <!--
  <loadInformation124    model="Cisco IP Phone 7914 14-Button Line Expansion Module">S00105000400</loadInformation124>
  <loadInformation227    model="Cisco IP Phone 7915 12-Button Line Expansion Module">S00105000400</loadInformation227>

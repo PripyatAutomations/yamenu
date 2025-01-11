@@ -100,7 +100,6 @@ sub get_and_parse_json {
 
     my $log_file = "/svc/yamenu/logs/cpm.log";
     open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
-    open STDERR, '>&', $log_fh or die "Cannot redirect STDERR to log file: $!";
     # Set auto-flush on the file handle
     select($log_fh);
     $| = 1;  # Enable auto-flush
@@ -141,7 +140,6 @@ sub render_icon_file_menu {
 
     my $log_file = "/svc/yamenu/logs/cpm.log";
     open our $log_fh, '>>', $log_file or die "Cannot open log file: $!";
-    open STDERR, '>&', $log_fh or die "Cannot redirect STDERR to log file: $!";
     # Set auto-flush on the file handle
     select($log_fh);
     $| = 1;  # Enable auto-flush
