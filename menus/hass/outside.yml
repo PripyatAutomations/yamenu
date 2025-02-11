@@ -1,4 +1,3 @@
-
 menu-hass-outside:
   type: PhoneMenu
   title: Outside Switches
@@ -29,7 +28,7 @@ menu-hass-outside:
 
 menu-hass-outside-back:
   type: IconMenu
-  title: Out Back Switches
+  title: Back Switches
   prompt: Choose switch
   items:
     - name: Bk Left Light
@@ -80,7 +79,7 @@ menu-hass-outside-back:
 
 menu-hass-outside-front:
   type: IconMenu
-  title: Out Front Switches
+  title: Front Switches
   prompt: Choose switch
   items:
     - name: Fr Left Light

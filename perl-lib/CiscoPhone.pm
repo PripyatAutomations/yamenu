@@ -189,9 +189,9 @@ sub render_icon_file_menu {
 
            # prefer an actual state to using toggle
            if (defined($icon_on) && length($icon_on)) {
-              $xml .= "    <URL>" . url_filter($cfg, "%%cgi%%/hass.pl?act=set&entity=$entity&state=$new_state&referrer=$menu") . "</URL>\n";
+              $xml .= "    <URL>" . url_filter($cfg, "%%cgi%%/hass.pl?act=set&amp;entity=$entity&amp;state=$new_state&amp;referrer=$menu") . "</URL>\n";
            } else {
-              $xml .= "    <URL>" . url_filter($cfg, "%%cgi%%/hass.pl?act=set&entity=$entity&state=toggle`&referrer=$menu") . "</URL>\n";
+              $xml .= "    <URL>" . url_filter($cfg, "%%cgi%%/hass.pl?act=set&amp;entity=$entity&amp;state=toggle&amp;referrer=$menu") . "</URL>\n";
            }
         } else {
            # If no entity, try link then url attributes
@@ -238,7 +238,7 @@ sub render_icon_file_menu {
           $xml .= "  <SoftKeyItem>\n";
           $xml .= "    <Name>$softkey->{name}</Name>\n";
           if (defined($entity) && length($entity)) {
-             $xml .= "    <URL>$cgi_base/hass.pl?act=set&state=toggle&entity=$entity</URL>\n";
+             $xml .= "    <URL>$cgi_base/hass.pl?act=set&amp;state=toggle&amp;entity=$entity</URL>\n";
           } elsif ($softkey->{link}) {
              # Link to another menu
              $xml .= "    <URL>$cgi_base/cisco-menu.pl?menu=$softkey->{link}</URL>\n";
